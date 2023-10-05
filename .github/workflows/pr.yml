@@ -5,20 +5,16 @@ on:
     types: [opened, reopened]
 
 jobs:
-  trigger-build:
+  build:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Trigger CircleCI
-        env:
-          CIRCLE_BRANCH: ${{ github.head_ref }}
-          CIRCLE_TOKEN: ${{ secrets.CIRCLE_TOKEN }}
-          ORG: cci-g41zg
-          PROJECT: inditex-exercise
-        run: |
-          curl -X POST \
-          -H "Circle-Token: ${CIRCLE_TOKEN}" \
-          -H 'Content-Type: application/json' \
-          -H 'Accept: application/json' \
-          -d "{\"branch\":\"${CIRCLE_BRANCH}\",\"parameters\":{\"is_api\":true}}" \
-          https://circleci.com/api/v2/project/github/${ORG}/${PROJECT}/pipeline
+      - uses: actions/checkout@v4
+      - name: Set up JDK 17
+        uses: actions/setup-java@v3
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+          cache: maven
+      - name: Verify maven build
+        run: mvn -X verify
