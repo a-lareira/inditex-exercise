@@ -13,8 +13,8 @@ jobs:
         env:
           CIRCLE_BRANCH: ${{ github.head_ref }}
           CIRCLE_TOKEN: ${{ secrets.CIRCLE_TOKEN }}
-          ORG: your-org-here
-          PROJECT: your-project-here
+          ORG: cci-g41zg
+          PROJECT: inditex-exercise
         run: |
           curl -X POST \
           -H "Circle-Token: ${CIRCLE_TOKEN}" \
