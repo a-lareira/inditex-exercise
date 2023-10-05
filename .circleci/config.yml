@@ -2,14 +2,18 @@
 version: 2.1
 orbs:
   maven: circleci/maven@1.4.1
+parameters:
+  is_api:
+    type: boolean
+    default: false
 executors:
   java17:
     docker:
       - image: 'cimg/openjdk:17.0'
 workflows:
   maven_test:
-    when:
-      equal: ["pull request", << pipeline.trigger_parameters.circleci.event_type >>]
+    when: 
+      equal: [true, << pipeline.parameters.is_api >>]
     jobs:
       - maven/test:
           command: '-X verify'
