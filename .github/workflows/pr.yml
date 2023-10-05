@@ -17,4 +17,4 @@ jobs:
           distribution: 'temurin'
           cache: maven
       - name: Verify maven build
-        run: mvn -X verify
+        run: mvn verify
