@@ -19,3 +19,35 @@ I have decided to use GitHub Action as the CI tool for this project. It provides
 with a great flexibility to configure the CI pipeline as code. The CI pipeline is triggered when
 a new pull request is created. At this moment the pipeline just executes a `mvn verify` command
 in order to check that the code compiles and all the tests pass.
+
+## Self-Contained Unit Tests
+At the time of writing a test, I personally prefer write a test method self-contained avoiding calling
+auxiliary methods and using magic numbers. Test code is not like production code and the main goal of
+the unit test is to check if a part of the system is working properly and helps developers to understand
+what is happening if something goes wrong. Self-Containing methods will provide developers with a
+cleaner view on what is being tested without the need on jumping to other parts of the code.  
+
+The following article discusses the subject in more depth:
+* [Why Good Developers Write Bad Unit Tests](https://mtlynch.io/good-developers-bad-tests/)
+
+## Test Mutation
+[PIT](https://pitest.org/) framework is used to introduce mutations testing on the project. As said
+on the official project web page:
+```
+Faults (or mutations) are automatically seeded into your code, then your tests are run.
+If your tests fail then the mutation is killed, if your tests pass then the mutation lived. 
+```
+
+This means that PIT runs unit test against automatically modified versions of the code. This modification
+should produce different result and cause the unit test to fail. If the test does not fail, maybe test
+suite is not exhaustive enough.  
+
+
+The following maven goal can be used to generate a mutation testing report of this project code base:
+
+```shell
+mvn test-compile org.pitest:pitest-maven:mutationCoverage
+```
+
+NOTE: Mutation testing will be skipped on model classes. Many of those classes contains boiler-plate 
+code that is normally not tested.

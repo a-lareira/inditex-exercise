@@ -18,5 +18,6 @@ public class Price {
   private Long rateId;
   private Long productId;
   private BigDecimal price;
+  private Integer priority;
   private Currency currency;
 }
