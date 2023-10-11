@@ -1,0 +1,107 @@
+openapi: 3.0.3
+info:
+  title: INDITEX Exercise API
+  description: INDITEX Exercise API
+  version: 1.0.0
+servers:
+  - url: 'http://localhost:8080'
+paths:
+  /appliedPrice:
+    get:
+      operationId: getAppliedPrice
+      description: Get Applied price for a brand product inside the specified time range
+      parameters:
+        - $ref: "#/components/parameters/brandId"
+        - $ref: "#/components/parameters/productId"
+        - $ref: "#/components/parameters/fromApplicationDate"
+        - $ref: "#/components/parameters/toApplicationDate"
+      responses:
+        200:
+          description: The price applied for the specified time range
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AppliedPrice"
+        default:
+          description: Error during the request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+components:
+  parameters:
+    brandId:
+      name: brandId
+      in: query
+      description: Brand identifier
+      required: true
+      schema:
+        type: integer
+    productId:
+      name: productId
+      in: query
+      description: Product identifier
+      required: true
+      schema:
+        type: integer
+    fromApplicationDate:
+      name: fromApplicationDate
+      in: query
+      description: Price From Application Date
+      required: true
+      schema:
+        type: string
+        format: date-time
+    toApplicationDate:
+      name: toApplicationDate
+      in: query
+      description: Price To Application Date
+      required: true
+      schema:
+        type: string
+        format: date-time
+  schemas:
+    Error:
+      type: object
+      properties:
+        code:
+          type: integer
+          example: 404
+        message:
+          type: string
+          example: 'Product Not Found'
+    AppliedPrice:
+      type: object
+      readOnly: true
+      required:
+        - brandCode
+        - rateCode
+        - fromApplicationDate
+        - toApplicationDate
+      properties:
+        brandCode:
+          description: Brand identifier
+          type: integer
+          example: 1
+        productCode:
+          description: Product identifier
+          type: integer
+          example: 35455
+        rateCode:
+          description: Rate code applied to the product
+          type: integer
+          example: 2
+        fromApplicationDate:
+          description: Price From Application Date
+          type: string
+          format: date-time
+          example: '2023-01-01T00:00:00Z'
+        toApplicationDate:
+          description: Price To Application Date
+          type: string
+          format: date-time
+          example: '2024-01-01T00:00:00Z'
+        finalPrice:
+          description: Final price applied to the product on the specified time range
+          type: number
+          example: 38.95
