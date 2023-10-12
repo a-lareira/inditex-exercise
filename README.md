@@ -85,3 +85,7 @@ for the API.
 The server stub will be generated
 using [OpenAPI Generator maven plugin](https://github.com/OpenAPITools/openapi-generator/blob/master/modules/openapi-generator-maven-plugin/README.md)
 using the `spring` generator.
+
+## Exception Handling
+I have decided to use controller advice to handle exceptions. This approach allows to centralize
+exception handling and avoid code duplication.
