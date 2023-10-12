@@ -3,11 +3,16 @@ info:
   title: INDITEX Exercise API
   description: INDITEX Exercise API
   version: 1.0.0
+tags:
+  - name: price
+    description: Get Applied price for a brand product inside the specified time range
 servers:
   - url: 'http://localhost:8080'
 paths:
-  /appliedPrice:
+  /v1/appliedPrice:
     get:
+      tags:
+        - price
       operationId: getAppliedPrice
       description: Get Applied price for a brand product inside the specified time range
       parameters:
