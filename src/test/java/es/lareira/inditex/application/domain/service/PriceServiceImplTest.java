@@ -33,7 +33,7 @@ class PriceServiceImplTest {
     LocalDateTime from = LocalDateTime.of(2023, 1, 1, 0, 0, 0);
     LocalDateTime to = from.plusDays(5L);
     Price price = Price.builder()
-        .price(BigDecimal.TEN)
+        .finalPrice(BigDecimal.TEN)
         .applicationDateRange(Range.<LocalDateTime>builder().from(from).to(to).build())
         .build();
     when(priceRepository.findPricesByProductIdAndBrandId(1L, 2L))
@@ -67,12 +67,12 @@ class PriceServiceImplTest {
         .applicationDate(from)
         .build();
     Price price1 = Price.builder()
-        .price(BigDecimal.TEN)
+        .finalPrice(BigDecimal.TEN)
         .applicationDateRange(
             Range.<LocalDateTime>builder().from(from.minusYears(3)).to(to.minusYears(3)).build())
         .build();
     Price price2 = Price.builder()
-        .price(BigDecimal.TEN)
+        .finalPrice(BigDecimal.TEN)
         .applicationDateRange(Range.<LocalDateTime>builder().from(from).to(to).build())
         .build();
     List<Price> savedPrices = List.of(price1, price2);
@@ -92,12 +92,12 @@ class PriceServiceImplTest {
         .applicationDate(from)
         .build();
     Price price1 = Price.builder()
-        .price(BigDecimal.TEN)
+        .finalPrice(BigDecimal.TEN)
         .applicationDateRange(Range.<LocalDateTime>builder().from(from).to(to).build())
         .priority(0)
         .build();
     Price price2 = Price.builder()
-        .price(BigDecimal.TEN)
+        .finalPrice(BigDecimal.TEN)
         .applicationDateRange(Range.<LocalDateTime>builder().from(from).to(to).build())
         .priority(1)
         .build();
@@ -118,7 +118,7 @@ class PriceServiceImplTest {
         .applicationDate(from)
         .build();
     Price price = Price.builder()
-        .price(BigDecimal.TEN)
+        .finalPrice(BigDecimal.TEN)
         .applicationDateRange(Range.<LocalDateTime>builder().from(from.plusYears(1)).to(to.plusYears(1)).build())
         .priority(0)
         .build();
