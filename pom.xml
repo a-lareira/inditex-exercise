@@ -61,6 +61,7 @@
             <configuration>
               <apiPackage>es.lareira.inditex.generated.api</apiPackage>
               <configOptions>
+                <useTags>true</useTags>
                 <dateLibrary>java8-localdatetime</dateLibrary>
                 <interfaceOnly>true</interfaceOnly>
                 <sourceFolder>src/gen/java/main</sourceFolder>
