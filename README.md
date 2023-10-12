@@ -109,3 +109,8 @@ mvn clean verify jacoco:report
 
 Results can be found in `target/site/jacoco/index.html` file. I also have configured the CI pipeline to
 publish a message on the PR with the code coverage report.
+
+## Sonar Coverage
+Sonar is a great tool to analyze code quality. I have added the sonar maven plugin in order to execute
+the analysis manually. It would be a better approach to execute the analysis on the CI pipeline, but
+I have not time enough to configure it.
