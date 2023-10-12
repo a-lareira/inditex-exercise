@@ -39,9 +39,9 @@ class PriceServiceImplTest {
     when(priceRepository.findPricesByProductIdAndBrandId(1L, 2L))
         .thenReturn(Collections.singletonList(price));
     AppliedPriceRequest request = AppliedPriceRequest.builder()
-        .productId(1L)
-        .brandId(2L)
-        .applicationDateRange(Range.<LocalDateTime>builder().from(from).to(to).build())
+        .productId(1)
+        .brandId(2)
+        .applicationDate(from)
         .build();
     assertNotNull(priceService.getAppliedPrice(request));
   }
@@ -49,9 +49,10 @@ class PriceServiceImplTest {
   @Test
   void when_priceRepository_give_no_results_then_throws_not_found_exception() {
     LocalDateTime from = LocalDateTime.of(2023, 1, 1, 0, 0, 0);
-    LocalDateTime to = from.plusDays(5L);
     AppliedPriceRequest request = AppliedPriceRequest.builder()
-        .applicationDateRange(Range.<LocalDateTime>builder().from(from).to(to).build())
+        .brandId(1)
+        .productId(5)
+        .applicationDate(from)
         .build();
     assertThrows(PriceNotFoundException.class, () -> priceService.getAppliedPrice(request));
   }
@@ -61,9 +62,9 @@ class PriceServiceImplTest {
     LocalDateTime from = LocalDateTime.of(2023, 1, 1, 0, 0, 0);
     LocalDateTime to = from.plusDays(5L);
     AppliedPriceRequest request = AppliedPriceRequest.builder()
-        .productId(7L)
-        .brandId(8L)
-        .applicationDateRange(Range.<LocalDateTime>builder().from(from).to(to).build())
+        .productId(7)
+        .brandId(8)
+        .applicationDate(from)
         .build();
     Price price1 = Price.builder()
         .price(BigDecimal.TEN)
@@ -86,9 +87,9 @@ class PriceServiceImplTest {
     LocalDateTime from = LocalDateTime.of(2023, 1, 1, 0, 0, 0);
     LocalDateTime to = from.plusDays(5L);
     AppliedPriceRequest request = AppliedPriceRequest.builder()
-        .productId(7L)
-        .brandId(8L)
-        .applicationDateRange(Range.<LocalDateTime>builder().from(from).to(to).build())
+        .productId(7)
+        .brandId(8)
+        .applicationDate(from)
         .build();
     Price price1 = Price.builder()
         .price(BigDecimal.TEN)

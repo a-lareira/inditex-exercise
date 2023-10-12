@@ -13,8 +13,7 @@ paths:
       parameters:
         - $ref: "#/components/parameters/brandId"
         - $ref: "#/components/parameters/productId"
-        - $ref: "#/components/parameters/fromApplicationDate"
-        - $ref: "#/components/parameters/toApplicationDate"
+        - $ref: "#/components/parameters/applicationDate"
       responses:
         200:
           description: The price applied for the specified time range
@@ -44,18 +43,10 @@ components:
       required: true
       schema:
         type: integer
-    fromApplicationDate:
-      name: fromApplicationDate
+    applicationDate:
+      name: applicationDate
       in: query
-      description: Price From Application Date
-      required: true
-      schema:
-        type: string
-        format: date-time
-    toApplicationDate:
-      name: toApplicationDate
-      in: query
-      description: Price To Application Date
+      description: Price Application Date
       required: true
       schema:
         type: string

@@ -1,84 +1,162 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns="http://maven.apache.org/POM/4.0.0"
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-  <parent>
-    <groupId>org.springframework.boot</groupId>
-    <artifactId>spring-boot-starter-parent</artifactId>
-    <version>3.1.4</version>
-    <relativePath/>
-  </parent>
-
-  <groupId>es.lareira</groupId>
   <artifactId>inditex-exercise</artifactId>
-  <version>0.0.3</version>
-
-  <properties>
-    <maven.compiler.source>17</maven.compiler.source>
-    <maven.compiler.target>17</maven.compiler.target>
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <pitest.version>1.15.1</pitest.version>
-    <openapi-generator.version>6.6.0</openapi-generator.version>
-  </properties>
+  <build>
+    <plugins>
+      <plugin>
+        <artifactId>pitest-maven</artifactId>
+        <configuration>
+          <excludedClasses>
+            <param>es.lareira.inditex.common.*</param>
+            <param>es.lareira.inditex.generated.*</param>
+            <param>**.mapper.*</param>
+            <param>**.model.*</param>
+            <param>**.entity.*</param>
+          </excludedClasses>
+        </configuration>
+        <dependencies>
+          <dependency>
+            <artifactId>pitest-junit5-plugin</artifactId>
+            <groupId>org.pitest</groupId>
+            <version>1.1.1</version>
+          </dependency>
+        </dependencies>
+        <groupId>org.pitest</groupId>
+        <version>${pitest.version}</version>
+      </plugin>
+      <plugin>
+        <artifactId>openapi-generator-maven-plugin</artifactId>
+        <executions>
+          <execution>
+            <configuration>
+              <apiPackage>es.lareira.inditex.generated.api</apiPackage>
+              <configOptions>
+                <dateLibrary>java8-localdatetime</dateLibrary>
+                <interfaceOnly>true</interfaceOnly>
+                <sourceFolder>src/gen/java/main</sourceFolder>
+                <useResponseEntity>false</useResponseEntity>
+              </configOptions>
+              <generateApiTests>false</generateApiTests>
+              <generateModelTests>false</generateModelTests>
+              <generatorName>spring</generatorName>
+              <inputSpec>${project.basedir}/src/main/resources/static/inditex-api.yaml</inputSpec>
+              <invokerPackage>es.lareira.inditex.generated.invoker</invokerPackage>
+              <modelPackage>es.lareira.inditex.generated.model</modelPackage>
+              <supportingFilesToGenerate>ApiUtil.java</supportingFilesToGenerate>
+            </configuration>
+            <goals>
+              <goal>generate</goal>
+            </goals>
+          </execution>
+        </executions>
+        <groupId>org.openapitools</groupId>
+        <version>${openapi-generator.version}</version>
+      </plugin>
+      <plugin>
+        <artifactId>spring-boot-maven-plugin</artifactId>
+        <groupId>org.springframework.boot</groupId>
+      </plugin>
+      <plugin>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <configuration>
+          <annotationProcessorPaths>
+            <dependency>
+              <artifactId>lombok-mapstruct-binding</artifactId>
+              <groupId>org.projectlombok</groupId>
+              <version>0.2.0</version>
+            </dependency>
+            <path>
+              <artifactId>lombok</artifactId>
+              <groupId>org.projectlombok</groupId>
+              <version>${lombok.version}</version>
+            </path>
+            <path>
+              <artifactId>mapstruct-processor</artifactId>
+              <groupId>org.mapstruct</groupId>
+              <version>${org.mapstruct.version}</version>
+            </path>
+          </annotationProcessorPaths> <!-- depending on your project -->
+          <source>1.8</source> <!-- depending on your project -->
+          <target>1.8</target>
+        </configuration>
+        <groupId>org.apache.maven.plugins</groupId>
+        <version>3.8.1</version>
+      </plugin>
+    </plugins>
+  </build>
 
   <dependencies>
     <!-- Spring Dependencies -->
     <dependency>
-      <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter</artifactId>
+      <groupId>org.springframework.boot</groupId>
     </dependency>
     <dependency>
-      <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-web</artifactId>
+      <groupId>org.springframework.boot</groupId>
+    </dependency>
+    <dependency>
+      <artifactId>spring-boot-starter-data-jpa</artifactId>
+      <groupId>org.springframework.boot</groupId>
     </dependency>
 
+    <!-- Other dependencies -->
     <dependency>
-      <groupId>org.projectlombok</groupId>
       <artifactId>lombok</artifactId>
-      <version>1.18.30</version>
-      <scope>provided</scope>
+      <groupId>org.projectlombok</groupId>
+      <version>${lombok.version}</version>
+    </dependency>
+    <dependency>
+      <artifactId>h2</artifactId>
+      <groupId>com.h2database</groupId>
+    </dependency>
+    <dependency>
+      <artifactId>mapstruct</artifactId>
+      <groupId>org.mapstruct</groupId>
+      <version>${org.mapstruct.version}</version>
     </dependency>
 
     <!-- AutoGenerated OpenAPI Dependencies -->
     <dependency>
-      <groupId>org.springdoc</groupId>
       <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+      <groupId>org.springdoc</groupId>
       <version>2.2.0</version>
     </dependency>
     <dependency>
-      <groupId>com.fasterxml.jackson.core</groupId>
       <artifactId>jackson-annotations</artifactId>
+      <groupId>com.fasterxml.jackson.core</groupId>
       <version>2.14.2</version>
     </dependency>
     <dependency>
-      <groupId>org.openapitools</groupId>
       <artifactId>jackson-databind-nullable</artifactId>
+      <groupId>org.openapitools</groupId>
       <version>0.2.6</version>
     </dependency>
     <dependency>
-      <groupId>javax.validation</groupId>
       <artifactId>validation-api</artifactId>
+      <groupId>javax.validation</groupId>
       <version>2.0.1.Final</version>
     </dependency>
     <dependency>
-      <groupId>io.swagger.core.v3</groupId>
       <artifactId>swagger-annotations</artifactId>
+      <groupId>io.swagger.core.v3</groupId>
       <version>2.2.15</version>
     </dependency>
     <dependency>
-      <groupId>javax.annotation</groupId>
       <artifactId>javax.annotation-api</artifactId>
+      <groupId>javax.annotation</groupId>
       <version>1.2</version>
     </dependency>
     <dependency>
-      <groupId>javax.servlet</groupId>
       <artifactId>javax.servlet-api</artifactId>
+      <groupId>javax.servlet</groupId>
       <version>3.1.0</version>
     </dependency>
     <dependency>
-      <groupId>io.swagger.core.v3</groupId>
       <artifactId>swagger-models</artifactId>
+      <groupId>io.swagger.core.v3</groupId>
       <version>2.2.4</version>
     </dependency>
 
@@ -86,70 +164,36 @@
 
 
     <dependency>
-      <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-test</artifactId>
+      <groupId>org.springframework.boot</groupId>
       <scope>test</scope>
     </dependency>
     <dependency>
-      <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-test</artifactId>
+      <groupId>org.springframework.boot</groupId>
       <scope>test</scope>
     </dependency>
   </dependencies>
+  <groupId>es.lareira</groupId>
+  <modelVersion>4.0.0</modelVersion>
 
-  <build>
-    <plugins>
-        <plugin>
-          <groupId>org.pitest</groupId>
-          <artifactId>pitest-maven</artifactId>
-          <version>${pitest.version}</version>
-          <dependencies>
-            <dependency>
-              <groupId>org.pitest</groupId>
-              <artifactId>pitest-junit5-plugin</artifactId>
-              <version>1.1.1</version>
-            </dependency>
-          </dependencies>
-          <configuration>
-            <excludedClasses>
-              <param>es.lareira.inditex.common.*</param>
-              <param>es.lareira.inditex.application.domain.model.*</param>
-              <param>es.lareira.inditex.generated.*</param>
-            </excludedClasses>
-          </configuration>
-        </plugin>
-      <plugin>
-        <groupId>org.openapitools</groupId>
-        <artifactId>openapi-generator-maven-plugin</artifactId>
-        <version>${openapi-generator.version}</version>
-        <executions>
-          <execution>
-            <goals>
-              <goal>generate</goal>
-            </goals>
-            <configuration>
-              <inputSpec>${project.basedir}/src/main/resources/static/inditex-api.yaml</inputSpec>
-              <generatorName>spring</generatorName>
-              <apiPackage>es.lareira.inditex.generated.api</apiPackage>
-              <modelPackage>es.lareira.inditex.generated.model</modelPackage>
-              <invokerPackage>es.lareira.inditex.generated.invoker</invokerPackage>
-              <generateModelTests>false</generateModelTests>
-              <generateApiTests>false</generateApiTests>
-              <supportingFilesToGenerate>ApiUtil.java</supportingFilesToGenerate>
-              <configOptions>
-                <interfaceOnly>true</interfaceOnly>
-                <sourceFolder>src/gen/java/main</sourceFolder>
-                <useResponseEntity>false</useResponseEntity>
-              </configOptions>
-            </configuration>
-          </execution>
-        </executions>
-      </plugin>
-      <plugin>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-maven-plugin</artifactId>
-      </plugin>
-    </plugins>
-  </build>
+  <parent>
+    <artifactId>spring-boot-starter-parent</artifactId>
+    <groupId>org.springframework.boot</groupId>
+    <relativePath/>
+    <version>3.1.4</version>
+  </parent>
+
+  <properties>
+    <maven.compiler.source>17</maven.compiler.source>
+    <maven.compiler.target>17</maven.compiler.target>
+    <openapi-generator.version>6.6.0</openapi-generator.version>
+    <org.mapstruct.version>1.5.5.Final</org.mapstruct.version>
+    <pitest.version>1.15.1</pitest.version>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <lombok.version>1.18.30</lombok.version>
+  </properties>
+
+  <version>0.1.0</version>
 
 </project>
