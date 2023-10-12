@@ -19,7 +19,7 @@ public class Price {
   private Range<LocalDateTime> applicationDateRange;
   private Long rateId;
   private Long productId;
-  private BigDecimal price;
+  private BigDecimal finalPrice;
   private Integer priority;
   private Currency currency;
 }

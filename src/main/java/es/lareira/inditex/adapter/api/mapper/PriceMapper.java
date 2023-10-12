@@ -12,7 +12,6 @@ public interface PriceMapper {
   @Mapping(target = "productCode", source = "productId")
   @Mapping(target = "fromApplicationDate", source = "applicationDateRange.from")
   @Mapping(target = "toApplicationDate", source = "applicationDateRange.to")
-  @Mapping(target = "finalPrice", source = "price")
   @Mapping(target = "brandCode", source = "brandId")
   AppliedPrice toDTO(Price price);
 }
