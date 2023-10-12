@@ -207,6 +207,6 @@
     <lombok.version>1.18.30</lombok.version>
   </properties>
 
-  <version>0.1.1</version>
+  <version>0.2.0</version>
 
 </project>
