@@ -80,11 +80,10 @@ changelog.
 Following an API First approach, I have decided to
 use [OpenAPI Specification](https://swagger.io/specification/)
 to define the API. This specification will be used to generate the server stub and will serve as
-documentation
-for the API.  
-The server stub will be generated
-using [OpenAPI Generator maven plugin](https://github.com/OpenAPITools/openapi-generator/blob/master/modules/openapi-generator-maven-plugin/README.md)
+documentation for the API.  The server stub will be generated using [OpenAPI Generator maven plugin](https://github.com/OpenAPITools/openapi-generator/blob/master/modules/openapi-generator-maven-plugin/README.md)
 using the `spring` generator.
+
+To swagger-ui documentation is exposed at `http://localhost:8080/swagger-ui/index.html` endpoint.
 
 ## Exception Handling
 I have decided to use controller advice to handle exceptions. This approach allows to centralize
@@ -114,3 +113,19 @@ publish a message on the PR with the code coverage report.
 Sonar is a great tool to analyze code quality. I have added the sonar maven plugin in order to execute
 the analysis manually. It would be a better approach to execute the analysis on the CI pipeline, but
 I have not time enough to configure it.
+
+## Docker
+I have added a dockerfile to the project in order to create a docker image. You can build the image with
+the following command:
+
+```shell
+docker build -t inditex-exercise .
+```
+In order to run the image, you can use the following command:
+
+```shell
+docker run -p 8080:8080 inditex-exercise
+```
+
+With this command the application will be available on `http://localhost:8080`. You can access
+the swagger-ui documentation at `http://localhost:8080/swagger-ui/index.html`.
