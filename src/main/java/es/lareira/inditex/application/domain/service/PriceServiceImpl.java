@@ -20,8 +20,8 @@ public class PriceServiceImpl implements PriceService {
   @Override
   public Price getAppliedPrice(AppliedPriceRequest appliedPriceRequest) {
     return priceRepository.findPricesByProductIdAndBrandId(
-            appliedPriceRequest.getProductId(),
-            appliedPriceRequest.getBrandId())
+            appliedPriceRequest.getProductId().longValue(),
+            appliedPriceRequest.getBrandId().longValue())
         .stream()
         .filter(price -> isInAppliedDateRange(appliedPriceRequest, price))
         .max(Comparator.comparing(Price::getPriority))
@@ -29,9 +29,9 @@ public class PriceServiceImpl implements PriceService {
   }
 
   private boolean isInAppliedDateRange(AppliedPriceRequest appliedPriceRequest, Price price) {
-    Range<LocalDateTime> requestApplicationDates = appliedPriceRequest.getApplicationDateRange();
+    LocalDateTime applicationDate = appliedPriceRequest.getApplicationDate();
     Range<LocalDateTime> priceApplicationDates = price.getApplicationDateRange();
-    return !requestApplicationDates.getFrom().isAfter(priceApplicationDates.getTo()) &&
-        !requestApplicationDates.getTo().isBefore(priceApplicationDates.getFrom());
+    return !applicationDate.isAfter(priceApplicationDates.getTo()) &&
+        !applicationDate.isBefore(priceApplicationDates.getFrom());
   }
 }

@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.1.0] - 2023-10-13
+
+### Added
+
+- Add H2 memory database
+- Add initial working version of the application
+
 ## [0.0.2] - 2023-10-12
 
 ### Added
