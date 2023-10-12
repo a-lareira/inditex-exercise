@@ -89,3 +89,11 @@ using the `spring` generator.
 ## Exception Handling
 I have decided to use controller advice to handle exceptions. This approach allows to centralize
 exception handling and avoid code duplication.
+
+## Request Trace
+In order to help developers to trace requests through the system, I have decided to make use of `micrometer`
+library to generate a unique trace id for each request. This trace id will be included in the response headers:
+* `X-B3-TraceId`
+* `X-B3-SpanId`
+This traces will help developers to trace requests through a distributed system. It is also possible to use
+some tools like [Zipkin](https://zipkin.io/) to visualize the traces.
