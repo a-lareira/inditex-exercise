@@ -107,4 +107,24 @@ class PriceServiceImplTest {
     Price result = priceService.getAppliedPrice(request);
     assertEquals(price2, result);
   }
+
+  @Test
+  void when_priceRepository_give_price_after_applied_date_throws_exception() {
+    LocalDateTime from = LocalDateTime.of(2020, 1, 1, 0, 0, 0);
+    LocalDateTime to = from.plusDays(5L);
+    AppliedPriceRequest request = AppliedPriceRequest.builder()
+        .productId(7)
+        .brandId(8)
+        .applicationDate(from)
+        .build();
+    Price price = Price.builder()
+        .price(BigDecimal.TEN)
+        .applicationDateRange(Range.<LocalDateTime>builder().from(from.plusYears(1)).to(to.plusYears(1)).build())
+        .priority(0)
+        .build();
+    List<Price> savedPrices = List.of(price);
+    when(priceRepository.findPricesByProductIdAndBrandId(7L, 8L))
+        .thenReturn(savedPrices);
+    assertThrows(PriceNotFoundException.class, () -> priceService.getAppliedPrice(request));
+  }
 }
