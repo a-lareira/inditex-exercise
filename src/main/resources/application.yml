@@ -11,6 +11,8 @@ management:
     propagation:
       type: b3
 spring:
+  application:
+    name: inditex-exercise
   datasource:
     url: jdbc:h2:mem:testdb
     driver-class-name: org.h2.Driver
