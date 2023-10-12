@@ -110,12 +110,25 @@
               <groupId>org.mapstruct</groupId>
               <version>${org.mapstruct.version}</version>
             </path>
-          </annotationProcessorPaths> <!-- depending on your project -->
-          <source>1.8</source> <!-- depending on your project -->
+          </annotationProcessorPaths>
+          <source>1.8</source>
           <target>1.8</target>
         </configuration>
         <groupId>org.apache.maven.plugins</groupId>
         <version>3.8.1</version>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-failsafe-plugin</artifactId>
+        <version>3.1.2</version>
+        <executions>
+          <execution>
+            <id>integration-tests</id>
+            <goals>
+              <goal>integration-test</goal>
+            </goals>
+          </execution>
+        </executions>
       </plugin>
     </plugins>
   </build>
@@ -241,6 +254,6 @@
     <lombok.version>1.18.30</lombok.version>
   </properties>
 
-  <version>0.3.0</version>
+  <version>0.4.0</version>
 
 </project>
