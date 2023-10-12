@@ -1,0 +1,464 @@
+{
+	"info": {
+		"_postman_id": "19ab4bb6-624c-46b8-917b-e1f98eef5c58",
+		"name": "INDITEX Exercice",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "16613722",
+		"_collection_link": "https://planetary-capsule-181023.postman.co/workspace/Home~97c19330-f197-4949-bbc6-781953753e78/collection/16613722-19ab4bb6-624c-46b8-917b-e1f98eef5c58?action=share&source=collection_link&creator=16613722"
+	},
+	"item": [
+		{
+			"name": "Healtcheck",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "traceparent",
+						"value": "00-63cf0173620c57b0aed605ee94255089-1444ca74c3d2133a-01",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "traceId",
+						"value": "80f198ee56343ba864fe8b2a57d3eff7",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "X-B3-TraceId",
+						"value": "e457b5a2e4d86bd1",
+						"type": "text"
+					},
+					{
+						"key": "X-B3-SpanId",
+						"value": "e457b5a2e4d86bd1",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{baseUrl}}/actuator/health",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"actuator",
+						"health"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Example 1",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "traceparent",
+						"value": "00-63cf0173620c57b0aed605ee94255089-1444ca74c3d2133a-01",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "traceId",
+						"value": "80f198ee56343ba864fe8b2a57d3eff7",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "X-B3-TraceId",
+						"value": "e457b5a2e4d86bd1",
+						"type": "text"
+					},
+					{
+						"key": "X-B3-SpanId",
+						"value": "e457b5a2e4d86bd1",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{baseUrl}}/v1/appliedPrice?brandId=1&productId=35455&applicationDate=2020-06-14T10:00:00",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"v1",
+						"appliedPrice"
+					],
+					"query": [
+						{
+							"key": "brandId",
+							"value": "1"
+						},
+						{
+							"key": "productId",
+							"value": "35455"
+						},
+						{
+							"key": "applicationDate",
+							"value": "2020-06-14T10:00:00"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Example 2",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "traceparent",
+						"value": "00-63cf0173620c57b0aed605ee94255089-1444ca74c3d2133a-01",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "traceId",
+						"value": "80f198ee56343ba864fe8b2a57d3eff7",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "X-B3-TraceId",
+						"value": "e457b5a2e4d86bd1",
+						"type": "text"
+					},
+					{
+						"key": "X-B3-SpanId",
+						"value": "e457b5a2e4d86bd1",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{baseUrl}}/v1/appliedPrice?brandId=1&productId=35455&applicationDate=2020-06-14T16:00:00",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"v1",
+						"appliedPrice"
+					],
+					"query": [
+						{
+							"key": "brandId",
+							"value": "1"
+						},
+						{
+							"key": "productId",
+							"value": "35455"
+						},
+						{
+							"key": "applicationDate",
+							"value": "2020-06-14T16:00:00"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Example 3",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "traceparent",
+						"value": "00-63cf0173620c57b0aed605ee94255089-1444ca74c3d2133a-01",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "traceId",
+						"value": "80f198ee56343ba864fe8b2a57d3eff7",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "X-B3-TraceId",
+						"value": "e457b5a2e4d86bd1",
+						"type": "text"
+					},
+					{
+						"key": "X-B3-SpanId",
+						"value": "e457b5a2e4d86bd1",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{baseUrl}}/v1/appliedPrice?brandId=1&productId=35455&applicationDate=2020-06-14T21:00:00",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"v1",
+						"appliedPrice"
+					],
+					"query": [
+						{
+							"key": "brandId",
+							"value": "1"
+						},
+						{
+							"key": "productId",
+							"value": "35455"
+						},
+						{
+							"key": "applicationDate",
+							"value": "2020-06-14T21:00:00"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Example 4",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "traceparent",
+						"value": "00-63cf0173620c57b0aed605ee94255089-1444ca74c3d2133a-01",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "traceId",
+						"value": "80f198ee56343ba864fe8b2a57d3eff7",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "X-B3-TraceId",
+						"value": "e457b5a2e4d86bd1",
+						"type": "text"
+					},
+					{
+						"key": "X-B3-SpanId",
+						"value": "e457b5a2e4d86bd1",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{baseUrl}}/v1/appliedPrice?brandId=1&productId=35455&applicationDate=2020-06-15T10:00:00",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"v1",
+						"appliedPrice"
+					],
+					"query": [
+						{
+							"key": "brandId",
+							"value": "1"
+						},
+						{
+							"key": "productId",
+							"value": "35455"
+						},
+						{
+							"key": "applicationDate",
+							"value": "2020-06-15T10:00:00"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Example 5",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "traceparent",
+						"value": "00-63cf0173620c57b0aed605ee94255089-1444ca74c3d2133a-01",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "traceId",
+						"value": "80f198ee56343ba864fe8b2a57d3eff7",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "X-B3-TraceId",
+						"value": "e457b5a2e4d86bd1",
+						"type": "text"
+					},
+					{
+						"key": "X-B3-SpanId",
+						"value": "e457b5a2e4d86bd1",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{baseUrl}}/v1/appliedPrice?brandId=1&productId=35455&applicationDate=2020-06-16T21:00:00",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"v1",
+						"appliedPrice"
+					],
+					"query": [
+						{
+							"key": "brandId",
+							"value": "1"
+						},
+						{
+							"key": "productId",
+							"value": "35455"
+						},
+						{
+							"key": "applicationDate",
+							"value": "2020-06-16T21:00:00"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Example Not Found Brand",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "traceparent",
+						"value": "00-63cf0173620c57b0aed605ee94255089-1444ca74c3d2133a-01",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "traceId",
+						"value": "80f198ee56343ba864fe8b2a57d3eff7",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "X-B3-TraceId",
+						"value": "e457b5a2e4d86bd1",
+						"type": "text"
+					},
+					{
+						"key": "X-B3-SpanId",
+						"value": "e457b5a2e4d86bd1",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{baseUrl}}/v1/appliedPrice?brandId=234&productId=35455&applicationDate=2020-06-16T21:00:00",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"v1",
+						"appliedPrice"
+					],
+					"query": [
+						{
+							"key": "brandId",
+							"value": "234"
+						},
+						{
+							"key": "productId",
+							"value": "35455"
+						},
+						{
+							"key": "applicationDate",
+							"value": "2020-06-16T21:00:00"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Example Not Found Product",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "traceparent",
+						"value": "00-63cf0173620c57b0aed605ee94255089-1444ca74c3d2133a-01",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "traceId",
+						"value": "80f198ee56343ba864fe8b2a57d3eff7",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "X-B3-TraceId",
+						"value": "e457b5a2e4d86bd1",
+						"type": "text"
+					},
+					{
+						"key": "X-B3-SpanId",
+						"value": "e457b5a2e4d86bd1",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{baseUrl}}/v1/appliedPrice?brandId=1&productId=35455234&applicationDate=2020-06-16T21:00:00",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"v1",
+						"appliedPrice"
+					],
+					"query": [
+						{
+							"key": "brandId",
+							"value": "1"
+						},
+						{
+							"key": "productId",
+							"value": "35455234"
+						},
+						{
+							"key": "applicationDate",
+							"value": "2020-06-16T21:00:00"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "http://localhost:8080",
+			"type": "string"
+		}
+	]
+}

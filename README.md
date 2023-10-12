@@ -1,10 +1,42 @@
 # inditex-exercise
 
 This repo implements the level exercise for the INDITEX interview process. The exercise consists of
-a
-simple API that allows to fetch product information from database.
+a simple API that allows to fetch product information from database.
 
 # Decisions
+## Hexagonal Architecture and DDD
+The project was designed with Hexagonal Architecture in mind. This architecture allows to decouple
+the business logic from the infrastructure. This allows to change the infrastructure without the need
+of changing the business logic. At this moment only H2 database is used, but it would be easy to change
+it to any other database. The same applies to the API. At this moment only REST API is implemented, but
+it would be easy to implement a GraphQL API or any other API.
+
+On the other hand I have decided not to use DDD. I think that DDD is a great tool to design complex domains,
+but in this case the domain is very simple and I think that DDD would be an overkill. Other reason to not
+use DDD in this case is the lack of domain knowledge. In my opinion, the most important part of DDD is the
+strategic part. Keeping in touch with the domain expert and build a conceptual model to be represented in
+our code. The tactical part is also important, but it does not make sense without the strategic one.
+
+## Database
+For simplicity, I have decided to use H2 database. H2 is an in-memory database that can be used for testing
+and I think is an excellent choice for this exercise. However, it would be easy to change it to any other.
+
+### Performance Considerations
+This is maybe one the most controversial decisions I have taken. In order to filter the price by application
+date I have decided to get all the prices from `brand` and `product` and filter them in code. This is done
+because I prefer to show a little more of skills with the usage of streams and lambdas.  
+In respect to performance, I think that this approach is not the best one. Anyway, is difficult to know which
+approximation is the best one without analyzing the real usage of the table. Maybe a good approach would be to
+add an index by `brand`, `product` and `applicationDates` however, this would increase the disk usage and slow
+down the insertions.
+
+## Mapping Fields
+Hexagonal architecture allows to decouple the business logic from the infrastructure. However, it is necessary
+to map the fields from the domain model to the database model and vice versa. I have decided to use `mapstruct`
+library to do this mapping. As you can note, some fields are similar but have sightly different names. For example,
+`rateCode` and `rateId` for `Price` and `PriceEntity` respectively. I have decided to use different names in order
+to show how the domain are totally isolated from the infrastructure. We can have totally different representation 
+of the object in both sides. It does not matter as long as we can map them.
 
 ## Github
 
@@ -129,3 +161,29 @@ docker run -p 8080:8080 inditex-exercise
 
 With this command the application will be available on `http://localhost:8080`. You can access
 the swagger-ui documentation at `http://localhost:8080/swagger-ui/index.html`.
+
+## Health Check
+With Spring boot actuator a health endpoint is added to the application. This endpoint can be used
+to check if the application is up and running. The endpoint is available by default at `/actuator/health`.
+This endpoint can be used by kubernetes or any other platform to check if the application is ready to receive
+traffic.
+
+# Testing the Application
+## Run the application
+In order to run the application, you can use the following command:
+
+```shell
+mvn spring-boot:run
+```
+
+The project also includes a dockerfile that can be used to create a docker image. You can build the image and run
+it on docker. See the `Docker` section for more information.
+
+## Available operations
+You can go to `http://localhost:8080/swagger-ui/index.html` to see the swagger-ui documentation.
+
+In `docs` folder it is also available a postman collection that can be used to test the application.
+
+# Further Information
+For further information, please contact me at `carlos.bouzon.garcia@gmail.com`. I would be delighted to answer
+any question you may have.
