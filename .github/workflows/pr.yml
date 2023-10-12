@@ -16,5 +16,15 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
           cache: maven
-      - name: Verify maven build
-        run: mvn verify
+      - name: Verify maven build and pass jacoco report
+        run: mvn verify jacoco:report
+      - name: Add coverage to PR
+        id: jacoco
+        uses: madrapps/jacoco-report@v1.6.1
+        with:
+          paths: |
+            ${{ github.workspace }}/**/target/site/jacoco/jacoco.xml
+          token: ${{ secrets.GIT_TOKEN }}
+          min-coverage-overall: 100
+          min-coverage-changed-files: 100
+          continue-on-error: false

@@ -97,3 +97,15 @@ library to generate a unique trace id for each request. This trace id will be in
 * `X-B3-SpanId`
 This traces will help developers to trace requests through a distributed system. It is also possible to use
 some tools like [Zipkin](https://zipkin.io/) to visualize the traces.
+
+## Test Code Coverage
+Cover code with unit tests is a good practice. However, it is also important to measure the code coverage
+in order to check if the test suite is exhaustive enough. I have decided to use `jacoco` library to generate
+a code coverage report. The report can be generated using the following maven goal:
+
+```shell
+mvn clean verify jacoco:report
+```
+
+Results can be found in `target/site/jacoco/index.html` file. I also have configured the CI pipeline to
+publish a message on the PR with the code coverage report.

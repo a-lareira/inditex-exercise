@@ -5,7 +5,7 @@ import es.lareira.inditex.application.domain.model.price.AppliedPriceRequest;
 import es.lareira.inditex.application.domain.model.price.Price;
 import es.lareira.inditex.application.port.input.service.PriceService;
 import es.lareira.inditex.application.port.output.repository.PriceRepository;
-import es.lareira.inditex.common.Range;
+import es.lareira.inditex.common.model.Range;
 import java.time.LocalDateTime;
 import java.util.Comparator;
 import lombok.RequiredArgsConstructor;

@@ -1,6 +1,6 @@
 package es.lareira.inditex.application.domain.model.price;
 
-import es.lareira.inditex.common.Range;
+import es.lareira.inditex.common.model.Range;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.Currency;

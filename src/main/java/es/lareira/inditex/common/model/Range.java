@@ -1,4 +1,4 @@
-package es.lareira.inditex.common;
+package es.lareira.inditex.common.model;
 
 import lombok.Builder;
 import lombok.Data;
